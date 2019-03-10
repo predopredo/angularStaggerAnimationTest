@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="hello">
+        <div class="holder">
+            <form
+                #f="ngForm"
+                (ngSubmit)="onAddSkill(f)"
+            >
+                <input
+                    type="text"
+                    id="skill"
+                    name="skill"
+                    ngModel
+                    required
+                    minlength="3"
+                    placeholder="Enter a skill you have..."
+                    autocomplete="off"
+                >
+                <p  
+                    @fade
+                    class="alert"
+                    *ngIf="f.invalid && submitted"
+                >
+                    {{ errorMessage }}
+                </p>
+            </form>
+            <ul [@slideInOutLeft]="skills.length">
+                <li *ngFor="let skill of skills; let i = index">
+                    {{ skill }}
+                    <i
+                        class="fa fa-minus-circle"
+                        (click)="onRemoveSkill(i)"
+                    ></i>
+                </li>
+            </ul>
+            <p>These are the skills that you possess.</p>
+        </div>
+    </div>
+</div>
